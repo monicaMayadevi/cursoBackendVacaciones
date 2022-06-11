@@ -1,14 +1,17 @@
 name: CI tests
 
+on: [push]
+
 jobs:
   build:
     runs-on:  ubuntu-latest
-    
     steps:
-    - uses: action/checkout@v2
-    - uses: action/setup-node@v1
-      with:
-        node-version: '14'
-    - run:  npm install
-    - run:  npm run test-unit
-    - run:  npm run test-integration
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - run:  npm install
+      - name: ejecutar pruebas unitarias
+        run:  npm run test-unit
+      - name: ejecutar pruebas de integracion
+        run:  npm run test-integration
