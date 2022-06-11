@@ -28,8 +28,8 @@ const test = () => describe( 'peliculas', () =>
       expect( datos.success ).to.be.true
       expect( datos.peliculas ).to.deep.equal(
         [
-          {"id": 1, "nombre":"Bambi", "clasificacion":"A", "genero":"Infantil"},
-          {"id": 2, "nombre":"Pesadilla en la calle del infierno", "clasificacion":"C", "genero":"Terror"}
+          {id: 1, nombre:'Bambi', clasificacion:'A', genero:'Infantil'},
+          {id: 2, nombre:'Pesadilla en la calle del infierno', clasificacion:'C', genero:'Terror'}
       ]
         
       )
