@@ -21,6 +21,7 @@ const test = () => describe( 'peliculas', () =>
       const result = await toPromise( testServer.get().execute({ query: PELICULAS }))
 
       expect( result ).to.be.ok
+      //para depurar errores
       //console.warn(JSON.stringify(result))
       expect( result.data.peliculas ).to.be.ok
       

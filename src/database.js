@@ -1,4 +1,5 @@
 const mysql = require( 'promise-mysql' )
+const config = require( './config' )
 
 let database
 
@@ -6,11 +7,11 @@ async function init()
 {
     database = await mysql.createPool(
     {
-        connectionLimit: 10,
-        host: 'localhost',
-        user: 'root',
-        password: 'admin',
-        database: 'peliculas_test'
+        connectionLimit: config.MYSQL_CONNECTION_LIMIT,
+        host: config.MYSQL_HOSTNAME,
+        user: config.MYSQL_USER,
+        password: config.MYSQL_PASSWORD,
+        database: config.MYSQL_DATABASE
     })
 }
 
