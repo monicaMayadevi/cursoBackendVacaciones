@@ -7,7 +7,7 @@
     "start": "nodemon src/index.js",
     "test": "jest",
     "test-unit": "jest --testPathPattern unit",
-    "test-integration": "jest --testPathPattern integration"    
+    "test-integration": "jest --testPathPattern integration"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,9 @@
   "homepage": "https://github.com/monicaMayadevi/cursoBackendVacaciones#readme",
   "dependencies": {
     "apollo-server": "^3.6.3",
-    "graphql": "^15.8.0"
+    "graphql": "^15.8.0",
+    "mysql": "^2.18.1",
+    "promise-mysql": "^5.2.0"
   },
   "devDependencies": {
     "apollo-link-http": "^1.5.17",

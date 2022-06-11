@@ -21,6 +21,7 @@ const test = () => describe( 'peliculas', () =>
       const result = await toPromise( testServer.get().execute({ query: PELICULAS }))
 
       expect( result ).to.be.ok
+      //para depurar errores
       //console.warn(JSON.stringify(result))
       expect( result.data.peliculas ).to.be.ok
       
@@ -28,8 +29,8 @@ const test = () => describe( 'peliculas', () =>
       expect( datos.success ).to.be.true
       expect( datos.peliculas ).to.deep.equal(
         [
-          {"id": 1, "nombre":"Bambi", "clasificacion":"A", "genero":"Infantil"},
-          {"id": 2, "nombre":"Pesadilla en la calle del infierno", "clasificacion":"C", "genero":"Terror"}
+          {id: 1, nombre:'Bambi', clasificacion:'A', genero:'Infantil'},
+          {id: 2, nombre:'Pesadilla en la calle del infierno', clasificacion:'C', genero:'Terror'}
       ]
         
       )

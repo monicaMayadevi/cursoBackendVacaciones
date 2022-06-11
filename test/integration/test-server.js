@@ -3,6 +3,7 @@ const { execute } = require( 'apollo-link' )
 const { HttpLink } = require( 'apollo-link-http' )
 const fetch = require( 'node-fetch' )
 
+const database = require( '../../src/database' ) 
 //liga al codigo donde se define el server
 const { server } = require( '../../src/server' )
 
@@ -10,9 +11,9 @@ let testServer
 
 const start = async () =>
 {
-
+  await database.init()
     //define el servidor de pruebas
-    const httpServer = await server.listen( { port: 0 } )
+  const httpServer = await server.listen( { port: 0 } )
   const link = new HttpLink(
   {
       uri: `http://localhost:${httpServer.port}`,
@@ -29,8 +30,9 @@ const start = async () =>
   }
 }
 
-const end = () =>{
-testServer.end()
+const end = () => {
+  database.end()
+  testServer.end()
 }
 module.exports =
 {

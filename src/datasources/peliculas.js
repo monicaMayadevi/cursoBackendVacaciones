@@ -1,5 +1,5 @@
 const { DataSource } = require( 'apollo-datasource' )
-
+const database = require( '../database' )
 class PeliculasDataSource extends DataSource
 {
     initialize( config )
@@ -7,12 +7,10 @@ class PeliculasDataSource extends DataSource
 
     listar()
     {
-        return Promise.resolve(
-            [
-                { id: 1, nombre:'Bambi', clasificacion:'A', genero:'Infantil'},
-                { id: 2, nombre:'Pesadilla en la calle del infierno', clasificacion:'C', genero:'Terror'},
-            ]
-        )
+        const sql = 'SELECT id,nombre, clasificacion, genero FROM peliculas'
+
+        return database.withPool( connection => 
+            database.select( connection,sql ) )
     }
 }
 

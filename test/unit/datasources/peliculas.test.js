@@ -1,24 +1,31 @@
-const chai = require( 'chai' )
+const chai = require ('chai')
+const sinon=require('sinon')
 
-const { expect } = chai
 
-const PeliculasDataSource = require( '../../../src/datasources/peliculas' )
+const {expect}= chai
 
-describe( 'PeliculasDataSource', () => 
-{
-    describe( 'listar', () => 
-    {
-        it( 'debe listar peliculas ', async () => 
-        {
-            const peliculas = new PeliculasDataSource()
-            const listado = await peliculas.listar()
-
-            expect( listado ).to.deep.equal(
-                [
-                    { id: 1, nombre: 'Bambi', clasificacion: 'A', genero: 'Infantil' },
-                    { id: 2, nombre: 'Pesadilla en la calle del infierno', clasificacion: 'C', genero: 'Terror'}
-                ]
-            )
+const database=require('../../../src/database')
+const PeliculasDataSource = require ('../../../src/datasources/peliculas')
+chai.use(require('sinon-chai'))
+describe('PeliculasDataSource',() =>{
+    describe('listar',()=>{
+        let connection, source
+        beforeEach(()=>{
+            connection={}
+            sinon.stub (database, 'withPool').callsFake(callback=>callback(connection))
+            source = new PeliculasDataSource();
         })
+        describe('listar', ()=>
+        it ('debe listar peliculas', async()=>
+        {
+            connection.query = sinon.stub().resolves([{ id:1 }])
+            const listado= await source.listar()
+            expect(listado).to.deep.equal([{ id:1 }])
+
+            connection.query = sinon.stub().resolves([{ nombre:'Bambi' }])
+            const listado2= await source.listar()
+            expect(listado2).to.deep.equal([{ nombre:'Bambi' }])
+        })
+        )
     })
 })
