@@ -19,7 +19,7 @@ jobs:
       - name: mysql version
         run:  mysql -uroot -proot -e "SELECT @@VERSION"
       - name: crear la base de datos
-        run: mysql .uroot -proot -e "CREATE DATABASE peliculas_test"
+        run: mysql -uroot -proot -e "CREATE DATABASE peliculas_test"
       - name: crear esquema de base de datos
         run:  mysql -uroot -proot -D peliculas_test < database/schema.sql
       - name: ejecutar pruebas unitarias
